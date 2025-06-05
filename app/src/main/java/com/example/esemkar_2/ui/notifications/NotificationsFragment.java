@@ -1,5 +1,6 @@
 package com.example.esemkar_2.ui.notifications;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.esemkar_2.R;
 import com.example.esemkar_2.databinding.FragmentNotificationsBinding;
 import com.example.esemkar_2.model.User;
 
@@ -25,12 +27,18 @@ import java.net.URL;
 public class NotificationsFragment extends Fragment {
 
     private FragmentNotificationsBinding binding;
+    private TextView username, name;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        name = binding.textView3;
+        username = binding.textView4;
+
+        new ProfileTask().execute();
 
         return root;
     }
@@ -74,12 +82,12 @@ public class NotificationsFragment extends Fragment {
             }
             return null;
         }
+        @SuppressLint("SetTextI18n")
         @Override
         protected void onPostExecute(User user) {
             if (user != null) {
-//                startActivity(new Intent(MainActivity.this, DashboardActivity.class));
-//                finish();
-//                v.setText(user.toString());
+                name.setText(user.getFullName());
+                username.setText("@" + user.getUsername());
             }
         }
     }

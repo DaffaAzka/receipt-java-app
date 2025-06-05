@@ -1,5 +1,6 @@
 package com.example.esemkar_2.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +13,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.esemkar_2.R;
 import com.example.esemkar_2.model.Category;
+import com.example.esemkar_2.ui.home.HomeFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder> {
 
+
     List<Category> categories = new ArrayList<>();
     private OnItemClickListener clickListener;
+
+    public CategoriesAdapter(List<Category> categories, OnItemClickListener clickListener) {
+        this.categories = categories;
+        this.clickListener = clickListener;
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void updateCategories(List<Category> newC) {
+        categories = newC;
+        notifyDataSetChanged();
+    }
 
     public interface OnItemClickListener  {
         void onItemClick(Category category);
