@@ -10,9 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.esemkar_2.adapter.CategoriesAdapter;
 import com.example.esemkar_2.databinding.FragmentHomeBinding;
+import com.example.esemkar_2.model.Category;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements CategoriesAdapter.OnItemClickListener {
 
     private FragmentHomeBinding binding;
 
@@ -22,8 +24,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        textView.setText("Home");
+
 
         return root;
     }
@@ -32,5 +33,10 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onItemClick(Category category) {
+
     }
 }

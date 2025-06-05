@@ -37,10 +37,16 @@ public class LoginActivity extends AppCompatActivity {
 
         TextView username = findViewById(R.id.usernameLoginText);
         TextView password = findViewById(R.id.passwordLoginText);
+        TextView tv_reg = findViewById(R.id.textView2);
         Button btn = findViewById(R.id.loginButton);
 
         btn.setOnClickListener(v -> {
             new LoginTask().execute(username.getText().toString(), password.getText().toString());
+        });
+
+        tv_reg.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            finish();
         });
 
     }
