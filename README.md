@@ -1,1 +1,1 @@
-# receipt-java-app
+# receipt java app
